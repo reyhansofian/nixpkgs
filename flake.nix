@@ -1,15 +1,15 @@
 {
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
-    home-manager.url = "github:nix-community/home-manager/release-23.05";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
-    # `follows` untuk reuse inputs dari inputs lain
+    home-manager.url = "github:nix-community/home-manager/release-23.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     utils.url = "github:numtide/flake-utils";
   };
 
-  outputs = { self, nixpkgs, home-manager, utils, ... }@inputs:
+  outputs = inputs@{ self, nixpkgs, nixpkgs-unstable, home-manager, utils, ... }:
     utils.lib.eachDefaultSystem(
       system: 
         let 

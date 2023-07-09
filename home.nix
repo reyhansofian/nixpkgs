@@ -19,6 +19,7 @@ in
 
   home = {
     packages = with pkgs; [
+      docker
       sshfs
       asciinema
       aspell
@@ -44,6 +45,7 @@ in
       nixpkgs-review
       nodejs
       nodePackages.node2nix
+      typescript
       unstable.python39Packages.poetry-core
       zsh
 
@@ -156,5 +158,5 @@ in
   #     enableSshSupport = true;
   #   };
   # };
-
+  
 }

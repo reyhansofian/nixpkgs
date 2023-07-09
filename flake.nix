@@ -18,33 +18,63 @@
           homeConfigurations = {
             reyhan = home-manager.lib.homeManagerConfiguration {
               inherit pkgs;
+
+              # username = if pkgs.stdenv.isDarwin then "vicz" else "reyhan";
+              # homeDirectory = if pkgs.stdenv.isDarwin then "/Users/${username}" else "/home/${username}";  # Default path if system is not Linux or macOS
+              # stateVersion = "23.05";
+              # configuration = { config, pkgs, ... }:
+              #   let
+              #     overlay-unstable = final: prev: {
+              #       unstable = inputs.nixpkgs-unstable.legacyPackages.${system};
+              #     };
+              #   in {
+              #     nixpkgs.overlays = [ overlay-unstable ];
+              #     nixpkgs.config = {
+              #       allowUnfree = true;
+              #       allowBroken = true;
+              #     };
+
+              #     imports = [
+              #       ./home.nix
+              #     ];
+              #   }
               modules = [
-                ({pkgs, ...}: 
+                ./home.nix
+                ({ config, pkgs, ... }: 
                   let
                     nixConfigDirectory = "~/.config/nixpkgs";
                     username = if pkgs.stdenv.isDarwin then "vicz" else "reyhan";
                     homeDirectory = if pkgs.stdenv.isDarwin then "/Users/${username}" else "/home/${username}";  # Default path if system is not Linux or macOS
+                    overlay-unstable = final: prev: {
+                      unstable = inputs.nixpkgs-unstable.legacyPackages.${system};
+                    };
                   in {
                     home.username = "reyhan";
                     home.homeDirectory = homeDirectory;
                     home.stateVersion = "23.05";
-                    home.packages = with pkgs;[
-                      git
-                      nodejs
-                      go
-                      python3
-                      python3.pkgs.pip
-                    ];
+                    # home.packages = with pkgs;[
+                    #   git
+                    #   nodejs
+                    #   go
+                    #   python3
+                    #   python3.pkgs.pip
+                    # ];
 
-                    home.shellAliases = {
-                      flakeup = 
-                        # example flakeup nixpkgs-unstable
-                        "nix flake lock ${nixConfigDirectory} --update-input"; 
-                      nxb =
-                        "nix build ${nixConfigDirectory}/#homeConfigurations.${system}.${username}.activationPackage -o ${nixConfigDirectory}/result ";
-                      nxa =
-                        "${nixConfigDirectory}/result/activate switch --flake ${nixConfigDirectory}/#homeConfigurations.${system}.${username}";
+                    nixpkgs.overlays = [ overlay-unstable ];
+                    nixpkgs.config = {
+                      allowUnfree = true;
+                      allowBroken = true;
                     };
+
+                    # home.shellAliases = {
+                    #   flakeup = 
+                    #     # example flakeup nixpkgs-unstable
+                    #     "nix flake lock ${nixConfigDirectory} --update-input"; 
+                    #   nxb =
+                    #     "nix build ${nixConfigDirectory}/#homeConfigurations.${system}.${username}.activationPackage -o ${nixConfigDirectory}/result ";
+                    #   nxa =
+                    #     "${nixConfigDirectory}/result/activate switch --flake ${nixConfigDirectory}/#homeConfigurations.${system}.${username}";
+                    # };
                   }
                 )
               ];

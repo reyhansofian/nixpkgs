@@ -20,7 +20,6 @@ in
   home = {
     packages = with pkgs; [
       docker
-      sshfs
       asciinema
       aspell
       aspellDicts.en
@@ -46,6 +45,7 @@ in
       nodejs
       nodePackages.node2nix
       typescript
+      openssh
       unstable.python39Packages.poetry-core
       zsh
 
@@ -73,7 +73,8 @@ in
     dircolors.enable = true;
     htop.enable = true;
     info.enable = true;
-    exa.enable = true;
+    ssh.enable = true;
+    ssh.matchBlocks.id_ed.identitiesOnly = true;
 
     direnv = {
       enable = true;
@@ -99,7 +100,7 @@ in
         path = "${config.xdg.dataHome}/zsh/history";
       };
       oh-my-zsh.enable = true;
-      oh-my-zsh.plugins = [ "git" ];
+      oh-my-zsh.plugins = [ "git" "ssh-agent" ];
       oh-my-zsh.theme = "robbyrussell";
 
       initExtraBeforeCompInit = ''
@@ -147,16 +148,4 @@ in
       '';
     };
   };
-
-  # services = {
-  #   nixos-hm-auto-update.enable = true;
-
-  #   nixos-vscode-ssh-fix.enable = true;
-  #   lorri.enable = true;
-  #   gpg-agent = {
-  #     enable = true;
-  #     enableSshSupport = true;
-  #   };
-  # };
-  
 }

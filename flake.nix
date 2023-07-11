@@ -20,7 +20,6 @@
               inherit pkgs;
 
               modules = [
-                ./home.nix
                 ({ config, pkgs, ... }: 
                   let
                     nixConfigDirectory = "~/.config/nixpkgs";
@@ -41,6 +40,7 @@
                     };
                   }
                 )
+                ./home.nix
               ];
             };
           };

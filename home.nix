@@ -1,37 +1,27 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, nixvim, ... }:
 let
   username = if pkgs.stdenv.isDarwin then "vicz" else "reyhan";
   homeDirectory = if pkgs.stdenv.isDarwin then "/Users/${username}" else "/home/${username}";  # Default path if system is not Linux or macOS
 in
 {
-
-  # imports = [
-  #   ./dotfiles/bashrc.nix
-  #   ./dotfiles/fish.nix
-  #   ./dotfiles/git.nix
-  #   ./dotfiles/tmux.nix
-  #   ./dotfiles/neovim.nix
-  #   ../../services/nixos-vscode-ssh-fix.nix
-  #   ../../services/nixos-hm-auto-update.nix
-  # ];
-
   fonts.fontconfig.enable = true;
 
   home = {
+    sessionPath = [
+      "${homeDirectory}/.local/bin"
+    ];
+
     packages = with pkgs; [
+      # System
       docker
       asciinema
       aspell
       aspellDicts.en
       tldr
       procs
-      gitAndTools.gh
-      git-crypt
-      git-lfs
       gtop
+      gcc
       unstable.btop
-      go
-      gopls
       tree
       ripgrep
       file
@@ -39,22 +29,43 @@ in
       fd
       highlight
       nix-index
-      yarn
       nixpkgs-fmt
       nixpkgs-review
+      openssh
+      zsh
+      neovim
+
+      # Git
+      gitAndTools.gh
+      git-crypt
+      git-lfs
+
+      # Golang
+      go
+      gopls
+      golangci-lint
+      gofumpt
+      gotools
+
+      # Nodejs
       nodejs
       nodePackages.node2nix
       typescript
-      openssh
-      unstable.python39Packages.poetry-core
-      zsh
+      yarn
 
+      # Python
+      unstable.python39Packages.poetry-core
       (python39.withPackages (ps: with ps; [
         pip
         powerline
         pygments
         pynvim
       ]))
+
+      # Fonts
+      (nerdfonts.override {
+        fonts = [ "FiraCode" "DroidSansMono" ];
+      })
     ] ++ lib.optionals pkgs.stdenv.isDarwin [
       # Add packages only for Darwin (MacOS)
       xclip
@@ -128,8 +139,8 @@ in
         }
         {
           name = "powerlevel10k-config";
-          src = lib.cleanSource ./configs/zsh/plugins/p10k;
-          # src = ./configs/zsh/plugins/p10k;
+          src = lib.cleanSource ./config/zsh/plugins/p10k;
+          # src = ./config/zsh/plugins/p10k;
           file = "p10k.zsh";
         }
       ];
@@ -138,6 +149,8 @@ in
         l = "ls -CF";
         ll = "ls -alF";
         la = "ls -A";
+        vim = "nvim";
+        vi = "nvim";
       };
 
       initExtra = ''

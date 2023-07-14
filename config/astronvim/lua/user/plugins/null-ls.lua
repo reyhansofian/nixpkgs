@@ -5,7 +5,9 @@ return {
     -- Include code and source with diagnostics message
     config.diagnostics_format = "[#{c}] #{m} (#{s})"
     config.sources = {
-      null_ls.builtins.diagnostics.flake8,
+      null_ls.builtins.diagnostics.flake8.with({
+        command = { "nix-shell", "-p", "flake8", "--run", "'flake8'" },
+      }),
       null_ls.builtins.diagnostics.golangci_lint.with({
         command = { "nix-shell", "-p", "golangci-lint", "--run", "'gopls'"},
       }),

@@ -54,12 +54,16 @@ in
       yarn
 
       # Python
-      unstable.python39Packages.poetry-core
-      (python39.withPackages (ps: with ps; [
+      unstable.python310Packages.poetry-core
+      (python310.withPackages (ps: with ps; [
+        python-lsp-server
         pip
         powerline
         pygments
         pynvim
+        virtualenvwrapper
+        setuptools
+        flake8
       ]))
 
       # Fonts
@@ -92,6 +96,7 @@ in
       nix-direnv = {
         enable = true;
       };
+      enableZshIntegration = true;
     };
 
     go = {

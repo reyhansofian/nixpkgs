@@ -35,13 +35,14 @@ return {
         })
         return config
       end,
-      ["neo-tree"] = {
-        filesystem = {
-          filtered_items = {
-            hide_dotfiles = false,
-          },
-        },
-      },
+      -- ["neo-tree"] = {
+      --   filesystem = {
+      --     filtered_items = {
+      --       visible = true,
+      --       hide_dotfiles = false,
+      --     },
+      --   },
+      -- },
       packer = {
         snapshot = "packer_snapshot",
         snapshot_path = vim.fn.stdpath("config"),
@@ -74,7 +75,7 @@ return {
         "html",
         "jsonls",
         "jsonnet_ls",
-        "pylsp",
+        "python-lsp-server",
         "rnix",
         "rust_analyzer",
         "terraformls",
@@ -83,6 +84,20 @@ return {
       },
 
       config = {
+        ["python-lsp-server"] = function()
+          return {
+            cmd = {
+              "nix-shell",
+              "-p",
+              "python310Packages.python-lsp-server",
+              "--run",
+              "'pylsp'",
+            },
+            filetypes = { "python" },
+            single_file_support = true,
+            root_dir = require("lspconfig.util").root_pattern(".envrc", ".git");
+          }
+        end,
         tsserver = function()
           return {
             cmd = {

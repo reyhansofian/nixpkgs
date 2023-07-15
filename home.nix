@@ -88,8 +88,35 @@ in
     dircolors.enable = true;
     htop.enable = true;
     info.enable = true;
-    ssh.enable = true;
-    ssh.matchBlocks.id_ed.identitiesOnly = true;
+
+    ssh = {
+      enable = true;
+      userKnownHostsFile = "~/.ssh/known_hosts";
+      hashKnownHosts = false;
+      controlMaster = "no";
+      controlPath = "~/.ssh/master-%r@%n:%p";
+      controlPersist = "no";
+      matchBlocks = {
+        "github.com" = {
+          hostname = "github.com";
+          identityFile = "~/.ssh/id_ed";
+          identitiesOnly = true;
+          user = "git";
+          extraOptions = {
+            AddKeysToAgent = "yes";
+          };
+        };
+        "bitbucket.org-efish" = {
+          hostname = "bitbucket.org";
+          identityFile = "~/.ssh/efish_ed";
+          identitiesOnly = true;
+          user = "git";
+          extraOptions = {
+            AddKeysToAgent = "yes";
+          };
+        };
+      };
+    };
 
     direnv = {
       enable = true;

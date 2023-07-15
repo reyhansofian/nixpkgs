@@ -38,7 +38,12 @@
                   home.username = "reyhan";
                   home.homeDirectory = homeDirectory;
                   home.stateVersion = "23.05";
-                  # fonts.fontconfig.enable = true;
+                  home.activation = {
+                    change-ssh-permission = home-manager.lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+                      $DRY_RUN_CMD chmod $VERBOSE_ARG 600 ~/.ssh/id_ed.pub
+                      $DRY_RUN_CMD chmod $VERBOSE_ARG 600 ~/.ssh/efish_ed.pub
+                    '';
+                  };
 
                   nixpkgs.overlays = [ overlay-unstable ];
                   nixpkgs.config = {

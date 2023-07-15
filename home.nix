@@ -50,8 +50,12 @@ in
       # Nodejs
       nodejs
       nodePackages.node2nix
+      nodePackages.dockerfile-language-server-nodejs
       typescript
       yarn
+
+      # Nvim Plugins
+      luaformatter
 
       # Python
       unstable.python310Packages.poetry-core

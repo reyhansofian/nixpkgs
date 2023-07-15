@@ -76,6 +76,7 @@ return {
         "jsonls",
         "jsonnet_ls",
         "python-lsp-server",
+        "dockerfile-language-server-nodejs",
         "rnix",
         "rust_analyzer",
         "terraformls",
@@ -84,6 +85,20 @@ return {
       },
 
       config = {
+        ["dockerfile-language-server-nodejs"] = function()
+          return {
+            cmd = {
+              "nix-shell",
+              "-p",
+              "nodePackages.dockerfile-language-server-nodejs",
+              "--run",
+              "'docker-langserver' '--stdio",
+            },
+            filetypes = { "dockerfile" },
+            single_file_support = true,
+            root_dir = require("lspconfig.util").root_pattern("Dockerfile", ".git");
+          }
+        end,
         ["python-lsp-server"] = function()
           return {
             cmd = {
@@ -145,13 +160,15 @@ return {
         format_on_save = {
           enabled = true,
           allow_filetypes = {
+            "lua",
             "go",
             "jsonnet",
             "rust",
             "terraform",
             "typescript",
             "javascript",
-            "nix"
+            "nix",
+            "python"
           },
         },
       },

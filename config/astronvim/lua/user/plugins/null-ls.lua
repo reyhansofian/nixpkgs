@@ -19,6 +19,10 @@ return {
       null_ls.builtins.formatting.goimports,
       null_ls.builtins.formatting.isort,
       null_ls.builtins.formatting.prettier,
+      -- null_ls.builtins.formatting.lua_format,
+      null_ls.builtins.formatting.lua_format.with({
+        command = { "nix-shell", "-p", "luaformatter", "--run", "'lua-format' '-i" },
+      }),
       null_ls.builtins.formatting.shfmt.with({
         extra_args = { "-i", "2", "-ci", "-bn"},
       }),

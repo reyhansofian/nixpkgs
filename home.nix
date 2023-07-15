@@ -64,6 +64,7 @@ in
         virtualenvwrapper
         setuptools
         flake8
+        docopt
       ]))
 
       # Fonts

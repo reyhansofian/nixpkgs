@@ -69,6 +69,7 @@ in
         setuptools
         flake8
         docopt
+        isort
       ]))
 
       # Fonts

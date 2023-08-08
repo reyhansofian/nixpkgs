@@ -9,7 +9,7 @@ return {
         command = { "nix-shell", "-p", "flake8", "--run", "'flake8'" },
       }),
       null_ls.builtins.diagnostics.golangci_lint.with({
-        command = { "nix-shell", "-p", "golangci-lint", "--run", "'gopls'"},
+        command = { "nix-shell", "-p", "golangci-lint", "--run", "'golangci-lint'"},
       }),
       null_ls.builtins.diagnostics.hadolint,
       null_ls.builtins.formatting.black,
@@ -17,7 +17,9 @@ return {
         extra_args = { "-extra" },
       }),
       null_ls.builtins.formatting.goimports,
-      null_ls.builtins.formatting.isort,
+      null_ls.builtins.formatting.isort.with({
+        command = { "nix-shell", "-p", "isort", "--run", "'isort' '." },
+      }),
       null_ls.builtins.formatting.prettier,
       -- null_ls.builtins.formatting.lua_format,
       null_ls.builtins.formatting.lua_format.with({

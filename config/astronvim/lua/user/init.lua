@@ -4,12 +4,15 @@ return {
     options = {
       opt = {
         cmdheight = 1, -- Always display cmd line
-        guicursor = "", -- Disable Nvim GUI cursor
-        mouse = "", -- Disable mouse support
-        number = false, -- Hide numberline
+        -- guicursor = "", -- Disable Nvim GUI cursor
+        mouse = "a", -- Disable mouse support
+        number = true, -- Hide numberline
         relativenumber = false, -- Hide relative numberline 
         signcolumn = "auto", -- Show sign column when used only
         spell = true, -- Enable spell checking
+      },
+      g = {
+        cmp_enabled = true
       },
     },
   
@@ -24,10 +27,6 @@ return {
     -- },
   
     plugins = {
-    --   init = {
-    --     ["ellisonleao/gruvbox.nvim"] = { version = "99e480720f81baa0ad1dddf0cf33fd096fcee176" },
-    --     ["gpanders/editorconfig.nvim"] = { version = "v1.4.0" },
-    --   },
       heirline = function(config)
         config[1] = vim.tbl_deep_extend("force", config[1], {
           -- add mode component
@@ -35,14 +34,14 @@ return {
         })
         return config
       end,
-      -- ["neo-tree"] = {
-      --   filesystem = {
-      --     filtered_items = {
-      --       visible = true,
-      --       hide_dotfiles = false,
-      --     },
-      --   },
-      -- },
+      ["neo-tree"] = {
+        filesystem = {
+          filtered_items = {
+            visible = true,
+            hide_dotfiles = false,
+          },
+        },
+      },
       packer = {
         snapshot = "packer_snapshot",
         snapshot_path = vim.fn.stdpath("config"),
@@ -50,20 +49,6 @@ return {
       session_manager = {
         autosave_last_session = true,
       },
-    --   treesitter = {
-    --     ensure_installed = {
-    --       "go",
-    --       "gomod",
-    --       "hcl",
-    --       "jsonnet",
-    --       "nix",
-    --       "python",
-    --       "regex",
-    --       "rust",
-    --       "terraform",
-    --       "typescript",
-    --     },
-    --   },
     },
   
     lsp = {
@@ -130,10 +115,17 @@ return {
               "gopls",
               "go",
               "--run",
-              "'gopls'"
+              "'gopls' 'serve'"
             };
             filetypes = {"go", "gomod"};
             root_dir = require("lspconfig.util").root_pattern("go.work", "go.mod", ".git");
+            settings = {
+              gopls = {
+                codelenses = {
+                  usePlaceholders = true,
+                },
+              },
+            };
           }
         end,
         rnix = function()

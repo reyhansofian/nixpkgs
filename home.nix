@@ -20,7 +20,7 @@ in
       tldr
       procs
       gtop
-      gcc
+      # gcc
       unstable.btop
       tree
       ripgrep
@@ -79,8 +79,11 @@ in
     ] ++ lib.optionals pkgs.stdenv.isDarwin [
       # Add packages only for Darwin (MacOS)
       xclip
+      luajit
     ] ++ lib.optionals pkgs.stdenv.isLinux [
       # Add packages only for Linux
+      gcc
+      xclip
     ];
   };
 

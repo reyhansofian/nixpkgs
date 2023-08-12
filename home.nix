@@ -51,6 +51,8 @@ in
       nodejs
       nodePackages.node2nix
       nodePackages.dockerfile-language-server-nodejs
+      nodePackages.vim-language-server
+      nodePackages.vscode-langservers-extracted
       typescript
       yarn
 

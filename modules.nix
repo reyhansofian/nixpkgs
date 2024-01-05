@@ -1,5 +1,5 @@
 { inputs, system, home-manager, sources }:
-{ config, pkgs,  ... }:
+{ config, pkgs, ... }:
 let
   overlay-unstable = final: prev: {
     unstable = inputs.nixpkgs-unstable.legacyPackages.${system};

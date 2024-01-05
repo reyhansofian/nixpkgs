@@ -14,6 +14,7 @@ return {
       g = {
         cmp_enabled = true,
         lsp_signature_debug = true,
+        icons_enabled = true,
       },
     },
   
@@ -42,6 +43,9 @@ return {
       session_manager = {
         autosave_last_session = true,
       },
+      {
+        "lukas-reineke/indent-blankline.nvim",
+      }
     },
   
     lsp = {

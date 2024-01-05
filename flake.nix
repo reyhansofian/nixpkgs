@@ -18,7 +18,7 @@
       let
         pkgs = import nixpkgs { inherit system; };
         sources = import ./nix/sources.nix;
-	getHomeDir = username: if pkgs.stdenv.isDarwin then "/Users/${username}" else "/home/${username}";
+        getHomeDir = username: if pkgs.stdenv.isDarwin then "/Users/${username}" else "/home/${username}";
       in
       {
         homeConfigurations = {
@@ -26,9 +26,9 @@
             inherit pkgs;
 
             modules = [
-	      (import ./modules.nix { inherit inputs system home-manager sources; })
+              (import ./modules.nix { inherit inputs system home-manager sources; })
               ./home.nix
-	      ({ ... }: { home.username = "vicz"; home.homeDirectory = getHomeDir "vicz"; })
+              ({ ... }: { home.username = "vicz"; home.homeDirectory = getHomeDir "vicz"; })
             ];
           };
 
@@ -36,9 +36,9 @@
             inherit pkgs;
 
             modules = [
-	      (import ./modules.nix { inherit inputs system home-manager sources; })
+              (import ./modules.nix { inherit inputs system home-manager sources; })
               ./home.nix
-	      ({ ... }: { home.username = "reyhan"; home.homeDirectory = getHomeDir "reyhan"; })
+              ({ ... }: { home.username = "reyhan"; home.homeDirectory = getHomeDir "reyhan"; })
             ];
           };
         };

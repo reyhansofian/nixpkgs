@@ -40,43 +40,18 @@ in
       git-crypt
       git-lfs
 
-      # Golang
-      go
-      gopls
-      golangci-lint
-      gofumpt
-      gotools
-
       # Nodejs
-      nodejs
-      nodePackages.node2nix
       nodePackages.dockerfile-language-server-nodejs
       nodePackages.vim-language-server
+      nodePackages.yaml-language-server
       nodePackages.vscode-langservers-extracted
-      typescript
-      yarn
 
       # Nvim Plugins
       luaformatter
 
-      # Python
-      unstable.python310Packages.poetry-core
-      (python310.withPackages (ps: with ps; [
-        python-lsp-server
-        pip
-        powerline
-        pygments
-        pynvim
-        virtualenvwrapper
-        setuptools
-        flake8
-        docopt
-        isort
-      ]))
-
       # Fonts
       (nerdfonts.override {
-        fonts = [ "FiraCode" "DroidSansMono" ];
+        fonts = [ "FiraCode" "DroidSansMono" "Hack" ];
       })
     ] ++ lib.optionals pkgs.stdenv.isDarwin [
       # Add packages only for Darwin (MacOS)
@@ -86,6 +61,7 @@ in
       # Add packages only for Linux
       gcc
       xclip
+      unzip
     ];
   };
 
@@ -194,6 +170,8 @@ in
         la = "ls -A";
         vim = "nvim";
         vi = "nvim";
+        py = "python";
+        k = "kubectl";
       };
 
       initExtra = ''

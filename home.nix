@@ -33,6 +33,7 @@ in
       nixpkgs-review
       openssh
       zsh
+      gnumake42
       neovim
 
       # Git
@@ -93,6 +94,15 @@ in
             AddKeysToAgent = "yes";
           };
         };
+        "gitlab.com" = {
+          hostname = "gitlab.com";
+          identityFile = "~/.ssh/gitlab";
+          identitiesOnly = true;
+          user = "git";
+          extraOptions = {
+            AddKeysToAgent = "yes";
+          };
+        };
         "bitbucket.org-efish" = {
           hostname = "bitbucket.org";
           identityFile = "~/.ssh/efish_ed";
@@ -111,13 +121,6 @@ in
         enable = true;
       };
       enableZshIntegration = true;
-    };
-
-    go = {
-      enable = true;
-      package = pkgs.go;
-      goPath = "${homeDirectory}/go";
-      goBin = "${homeDirectory}/go/bin/";
     };
 
     zsh = {

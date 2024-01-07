@@ -59,6 +59,7 @@ return {
         "jsonnet_ls",
         "python-lsp-server",
         "dockerfile-language-server-nodejs",
+        "typescript-language-server",
         "rnix",
         "rust_analyzer",
         "terraformls",

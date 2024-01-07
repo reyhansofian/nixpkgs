@@ -5,7 +5,7 @@
 Run `nix build .#homeConfigurations.x86_64-linux.reyhan.activationPackage`
 
 ### OSX
-Run `nix build .#homeConfigurations.darwin.vicz.activationPackage`
+Run `nix build .#homeConfigurations.x86_64-darwin.vicz.activationPackage`
 
 ## Activate
 Run `./result/activate`

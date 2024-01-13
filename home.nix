@@ -1,4 +1,4 @@
-{ config, lib, pkgs, nixvim, ... }:
+{ config, lib, pkgs, ... }:
 let
   username = if pkgs.stdenv.isDarwin then "vicz" else "reyhan";
   homeDirectory = if pkgs.stdenv.isDarwin then "/Users/${username}" else "/home/${username}";  # Default path if system is not Linux or macOS
@@ -34,7 +34,7 @@ in
       openssh
       zsh
       gnumake42
-      neovim
+      # neovim
 
       # Git
       gitAndTools.gh
@@ -126,7 +126,7 @@ in
     zsh = {
       enable = true;
       enableAutosuggestions = true;
-      enableSyntaxHighlighting = true;
+      syntaxHighlighting.enable = true;
       autocd = true;
       history = {
         size = 10000;

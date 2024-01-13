@@ -59,7 +59,6 @@ return {
         "jsonnet_ls",
         "python-lsp-server",
         "dockerfile-language-server-nodejs",
-        "typescript-language-server",
         "rnix",
         "rust_analyzer",
         "terraformls",
@@ -100,8 +99,10 @@ return {
           return {
             cmd = {
               "nix-shell",
-              "-p nodePackages.typescript-language-server nodePackages.typescript", 
-              "--run 'typescript-language-server' '--stdio'"
+              "-p", 
+              "nodePackages.typescript-language-server", 
+              "--run",
+              "'typescript-language-server' '--stdio'",
             }
           }
         end,

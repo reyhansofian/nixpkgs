@@ -1,12 +1,12 @@
-{ inputs, system, home-manager, sources }:
+{ inputs, system, home-manager, ... }:
 { config, pkgs, ... }:
 let
   overlay-unstable = final: prev: {
-    unstable = inputs.nixpkgs-unstable.legacyPackages.${system};
+    unstable = inputs.nixpkgs.legacyPackages.${system};
   };
 in
 {
-  home.stateVersion = "23.05";
+  home.stateVersion = "23.11";
   home.activation = {
     change-ssh-permission = home-manager.lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       $DRY_RUN_CMD chmod $VERBOSE_ARG 600 ~/.ssh/id_ed.pub
@@ -20,16 +20,16 @@ in
     allowBroken = true;
   };
 
-  xdg.configFile = {
-    astronvim = {
-      # onChange = "nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'";
-      onChange = "nvim --headless -c 'if exists(\":LuaCacheClear\") | :LuaCacheClear' +quitall";
-      source = ./config/astronvim;
-    };
-    nvim = {
-      # onChange = "nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'";
-      # onChange = "nvim --headless -c 'if exists(\":LuaCacheClear\") | :LuaCacheClear' +quitall";
-      source = sources.AstroNvim;
-    };
-  };
+  # xdg.configFile = {
+  # astronvim = {
+  #   # onChange = "nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'";
+  #   onChange = "nvim --headless -c 'if exists(\":LuaCacheClear\") | :LuaCacheClear' +quitall";
+  #   source = ./config/astronvim;
+  # };
+  # nvim = {
+  #   # onChange = "nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'";
+  #   # onChange = "nvim --headless -c 'if exists(\":LuaCacheClear\") | :LuaCacheClear' +quitall";
+  #   source = sources.AstroNvim;
+  # };
+  # };
 }

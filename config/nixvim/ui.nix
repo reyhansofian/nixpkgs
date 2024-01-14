@@ -12,14 +12,6 @@
 
     plugins.notify.enable = true;
 
-    plugins.telescope = {
-      enable = true;
-      extensions = {
-        fzf-native.enable = true;
-        file_browser.enable = true;
-      };
-    };
-
     plugins.lualine = {
       enable = true;
       extensions = [ "fzf" ];

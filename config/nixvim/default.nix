@@ -5,6 +5,7 @@
     ./utils/buffer.nix
     ./utils/ui.nix
     ./plugins/comment.nix
+    ./plugins/telescope.nix
     ./lsp.nix
     ./keymap.nix
     ./ui.nix

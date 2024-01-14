@@ -28,9 +28,12 @@
         "|" = [ "<cmd>vsplit<cr>" "Vertical Split" ];
         "\\" = [ "<cmd>split<cr>" "Horizontal Split" ];
 
-        # Find
+        # Find using Telescope
         "<leader>f" = [ "" "🔍 Find" ];
-        "<leader>fw" = [ "<cmd>Telescope<cr>" "Find with Telescope" ];
+        "<leader>f'" = [ "<cmd>lua require('telescope.builtin').marks()<cr>" "Find marks" ];
+        "<leader>fw" = [ "<cmd>lua require('telescope.builtin').live_grep()<cr>" "Find words" ];
+        "<leader>fc" = [ "<cmd>lua require('telescope.builtin').grep_string()<cr>" "Find word under cursor" ];
+        "<leader>ff" = [ "<cmd>lua require('telescope.builtin').find_files()<cr>" "Find files" ];
 
         # NeoTree
         "<leader>e" = [ "<cmd>Neotree toggle<cr>" "Toggle Explorer" ];
@@ -59,6 +62,8 @@
         #  "<cmd>lua buffer_move(-(vim.v.count > 0 and vim.v.count or 1))<cr>"
         #  "Move buffer tab left"
         #];
+
+        # Telescope
       };
     };
   };

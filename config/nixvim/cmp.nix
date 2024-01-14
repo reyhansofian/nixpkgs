@@ -12,14 +12,27 @@
 
     plugins.nvim-cmp = {
       enable = true;
+      preselect = "None";
 
       sources = [
-        { name = "nvim_lsp"; }
-        { name = "luasnip"; }
-        { name = "path"; }
-        { name = "buffer"; }
-        { name = "codeium"; }
+        { name = "codeium"; priority = 1000; }
+        { name = "nvim_lsp"; priority = 750; }
+        { name = "luasnip"; priority = 550; }
+        { name = "buffer"; priority = 300; }
+        { name = "path"; priority = 250; }
       ];
+
+      window = {
+        completion = {
+          border = "rounded";
+          winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:PmenuSel,Search:None";
+        };
+
+        documentation = {
+          border = "rounded";
+          winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:PmenuSel,Search:None";
+        };
+      };
 
       snippet.expand = "luasnip";
 
@@ -28,7 +41,7 @@
         "<C-d>" = "cmp.mapping.scroll_docs(-4)";
         "<C-e>" = "cmp.mapping.close()";
         "<C-f>" = "cmp.mapping.scroll_docs(4)";
-        "<CR>" = "cmp.mapping.confirm({ select = true, behavior = cmp.ConfirmBehavior.Insert })";
+        "<CR>" = "cmp.mapping.confirm({ select = false, behavior = cmp.ConfirmBehavior.Replace })";
         "<S-Tab>" = {
           action = "cmp.mapping.select_prev_item()";
           modes = [

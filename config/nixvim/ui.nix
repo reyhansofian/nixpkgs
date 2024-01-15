@@ -19,10 +19,6 @@
       theme = "onedark";
     };
 
-    plugins.toggleterm = {
-      enable = true;
-    };
-
     plugins.indent-blankline.enable = true;
 
     plugins.nvim-ufo = {

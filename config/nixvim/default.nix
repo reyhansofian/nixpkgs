@@ -6,6 +6,7 @@
     ./utils/ui.nix
     ./plugins/comment.nix
     ./plugins/telescope.nix
+    ./plugins/toggleterm.nix
     ./lsp.nix
     ./keymap.nix
     ./ui.nix

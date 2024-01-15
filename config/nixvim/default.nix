@@ -7,6 +7,7 @@
     ./plugins/comment.nix
     ./plugins/telescope.nix
     ./plugins/toggleterm.nix
+    ./plugins/treesitter.nix
     ./lsp.nix
     ./keymap.nix
     ./ui.nix

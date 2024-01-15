@@ -6,6 +6,24 @@
 
     extraConfigLuaPre = ''
       vim.g.mapleader = " "
+      vim.g.max_file = { size = 1024 * 100, lines = 10000 }
+      vim.t.bufs = vim.t.bufs and vim.t.bufs or vim.api.nvim_list_bufs()
+
+      current_buf, last_buf = nil, nil
+      url_matcher = "\\v\\c%(%(h?ttps?|ftp|file|ssh|git)://|[a-z]+[@][a-z]+[.][a-z]+:)%([&:#*@~%_\\-=?!+;/0-9a-z]+%(%([.;/?]|[.][.]+)[&:#*@~%_\\-=?!+/0-9a-z]+|:\\d+|,%(%(%(h?ttps?|ftp|file|ssh|git)://|[a-z]+[@][a-z]+[.][a-z]+:)@![0-9a-z]+))*|\\([&:#*@~%_\\-=?!+;/.0-9a-z]*\\)|\\[[&:#*@~%_\\-=?!+;/.0-9a-z]*\\]|\\{%([&:#*@~%_\\-=?!+;/.0-9a-z]*|\\{[&:#*@~%_\\-=?!+;/.0-9a-z]*})\\})+"
+
+      --- Delete the syntax matching rules for URLs/URIs if set
+      function delete_url_match()
+        for _, match in ipairs(vim.fn.getmatches()) do
+          if match.group == "HighlightURL" then vim.fn.matchdelete(match.id) end
+        end
+      end
+
+      --- Add syntax matching rules for highlighting URLs/URIs
+      function set_url_match()
+        delete_url_match()
+        if vim.g.highlighturl_enabled then vim.fn.matchadd("HighlightURL", M.url_matcher, 15) end
+      end
     '';
 
     options = {

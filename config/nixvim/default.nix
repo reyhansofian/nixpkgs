@@ -1,9 +1,10 @@
 {
   # Import all your configuration modules here
   imports = [
-    ./nvim.nix
+    ./utils/init.nix
     ./utils/buffer.nix
     ./utils/ui.nix
+    ./utils/autocmd.nix
     ./plugins/comment.nix
     ./plugins/telescope.nix
     ./plugins/toggleterm.nix

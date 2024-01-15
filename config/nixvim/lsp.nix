@@ -10,8 +10,8 @@
     };
 
     plugins.lsp.onAttach = ''
-                  local function on_attach(bufnr)
-                  	require("lsp_signature").on_attach({
+      local function on_attach(bufnr)
+        require("lsp_signature").on_attach({
       		bind = true,
       		doc_lines = 0,
       		floating_window = true,
@@ -27,8 +27,8 @@
       		},
       		zindex = 200, -- by default it will be on top of all floating windows, set to 50 send it to bottom
       		padding = "", -- character to pad on left and right of signature can be ' ', or '|'  etc
-      		      }, bufnr)
-                  end
+      	}, bufnr)
+      end
     '';
 
     plugins.lsp.servers = {

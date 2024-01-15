@@ -24,6 +24,14 @@
         delete_url_match()
         if vim.g.highlighturl_enabled then vim.fn.matchadd("HighlightURL", M.url_matcher, 15) end
       end
+
+      --- Check if a plugin is defined in lazy. Useful with lazy loading when a plugin is not necessarily loaded yet
+      ---@param plugin string The plugin to search for
+      ---@return boolean available # Whether the plugin is available
+      function is_available(plugin)
+        local lazy_config_avail, lazy_config = pcall(require, "lazy.core.config")
+        return lazy_config_avail and lazy_config.spec.plugins[plugin] ~= nil
+      end
     '';
 
     options = {

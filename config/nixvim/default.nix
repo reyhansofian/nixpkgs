@@ -9,6 +9,7 @@
     ./plugins/telescope.nix
     ./plugins/toggleterm.nix
     ./plugins/treesitter.nix
+    ./plugins/neo-tree.nix
     ./lsp.nix
     ./keymap.nix
     ./ui.nix

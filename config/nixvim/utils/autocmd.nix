@@ -15,6 +15,7 @@
       indent_blankline_refresh_scroll = { clear = true; };
       neotree_start = { clear = true; };
       neotree_refresh = { clear = true; };
+      file_user_events = { clear = true; };
     };
 
     autoCmd = [
@@ -273,6 +274,26 @@
                 if stats and stats.type == "directory" then
                   vim.api.nvim_del_augroup_by_name "neotree_start"
                   require "neo-tree"
+                end
+              end
+            end
+          '';
+        };
+      }
+      {
+        event = [ "BufReadPost" "BufNewFile" "BufWritePost" ];
+        group = "file_user_events";
+        desc = "NixVim user events for file detection";
+        callback = {
+          __raw = ''
+            function(args)
+              local current_file = vim.fn.resolve(vim.fn.expand "%")
+              if not (current_file == "" or vim.api.nvim_get_option_value("buftype", { buf = args.buf }) == "nofile") then
+                if
+                  git_file_worktree()
+                  or cmd({ "git", "-C", vim.fn.fnamemodify(current_file, ":p:h"), "rev-parse" }, false)
+                then
+                  vim.api.nvim_del_augroup_by_name "file_user_events"
                 end
               end
             end

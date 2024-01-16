@@ -7,10 +7,26 @@
     extraConfigLuaPre = ''
       vim.g.mapleader = " "
       vim.g.max_file = { size = 1024 * 100, lines = 10000 }
+      vim.g.git_worktress = nil
       vim.t.bufs = vim.t.bufs and vim.t.bufs or vim.api.nvim_list_bufs()
 
       current_buf, last_buf = nil, nil
       url_matcher = "\\v\\c%(%(h?ttps?|ftp|file|ssh|git)://|[a-z]+[@][a-z]+[.][a-z]+:)%([&:#*@~%_\\-=?!+;/0-9a-z]+%(%([.;/?]|[.][.]+)[&:#*@~%_\\-=?!+/0-9a-z]+|:\\d+|,%(%(%(h?ttps?|ftp|file|ssh|git)://|[a-z]+[@][a-z]+[.][a-z]+:)@![0-9a-z]+))*|\\([&:#*@~%_\\-=?!+;/.0-9a-z]*\\)|\\[[&:#*@~%_\\-=?!+;/.0-9a-z]*\\]|\\{%([&:#*@~%_\\-=?!+;/.0-9a-z]*|\\{[&:#*@~%_\\-=?!+;/.0-9a-z]*})\\})+"
+
+      --- Run a shell command and capture the output and if the command succeeded or failed
+      ---@param cmd string|string[] The terminal command to execute
+      ---@param show_error? boolean Whether or not to show an unsuccessful command as an error to the user
+      ---@return string|nil # The result of a successfully executed command or nil
+      function cmd(cmd, show_error)
+        if type(cmd) == "string" then cmd = { cmd } end
+        if vim.fn.has "win32" == 1 then cmd = vim.list_extend({ "cmd.exe", "/C" }, cmd) end
+        local result = vim.fn.system(cmd)
+        local success = vim.api.nvim_get_vvar "shell_error" == 0
+        if not success and (show_error == nil or show_error) then
+          vim.api.nvim_err_writeln(("Error running command %s\nError message:\n%s"):format(table.concat(cmd, " "), result))
+        end
+        return success and result:gsub("[\27\155][][()#;?%d]*[A-PRZcf-ntqry=><~]", "") or nil
+      end
 
       --- Delete the syntax matching rules for URLs/URIs if set
       function delete_url_match()
@@ -31,6 +47,11 @@
       function is_available(plugin)
         local lazy_config_avail, lazy_config = pcall(require, "lazy.core.config")
         return lazy_config_avail and lazy_config.spec.plugins[plugin] ~= nil
+      end
+
+      function has_words_before()
+        local line, col = (unpack or table.unpack)(vim.api.nvim_win_get_cursor(0))
+        return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match "%s" == nil
       end
     '';
 

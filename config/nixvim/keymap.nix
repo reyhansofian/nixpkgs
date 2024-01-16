@@ -22,14 +22,14 @@
         # Standard operations
         "<C-s>" = [ "<cmd>w!<cr>" "Force save" ];
         "<C-q>" = [ "<cmd>qa!<cr>" "Force quit" ];
-        "<leader>w" = [ "<cmd>w<cr>" "💾 Save" ];
+        "<leader>w" = [ "<cmd>w<cr>" "󰨣 Save" ];
         "<leader>q" = [ "<cmd>confirm q<cr>" "Quit" ];
         "<leader>Q" = [ "<cmd>confirm qall<cr>" "Quit all" ];
         "|" = [ "<cmd>vsplit<cr>" "Vertical Split" ];
         "\\" = [ "<cmd>split<cr>" "Horizontal Split" ];
 
         # Find using Telescope
-        "<leader>f" = [ "" "🔍 Find" ];
+        "<leader>f" = [ "" " Find" ];
         "<leader>f'" = [ "<cmd>lua require('telescope.builtin').marks()<cr>" "Find marks" ];
         "<leader>fw" = [ "<cmd>lua require('telescope.builtin').live_grep()<cr>" "Find words" ];
         "<leader>fc" = [ "<cmd>lua require('telescope.builtin').grep_string()<cr>" "Find word under cursor" ];

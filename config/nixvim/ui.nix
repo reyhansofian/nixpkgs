@@ -2,14 +2,6 @@
   programs.nixvim = {
     colorschemes.onedark.enable = true;
     plugins.bufferline.enable = true;
-    plugins.neo-tree = {
-      enable = true;
-      enableDiagnostics = true;
-      enableGitStatus = true;
-      enableModifiedMarkers = true;
-      enableRefreshOnWrite = true;
-    };
-
     plugins.notify.enable = true;
 
     plugins.lualine = {

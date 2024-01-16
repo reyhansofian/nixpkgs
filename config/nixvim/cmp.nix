@@ -64,6 +64,7 @@
         "<S-Tab>" = {
           action = ''
             function(fallback)
+	      local snip_status_ok, luasnip = pcall(require, "luasnip")
               if cmp.visible() then
                 cmp.select_prev_item()
               elseif luasnip.jumpable(-1) then
@@ -78,6 +79,7 @@
         "<Tab>" = {
           action = ''
             function(fallback)
+              local snip_status_ok, luasnip = pcall(require, "luasnip")
               if cmp.visible() then
                 cmp.select_next_item()
               elseif luasnip.expand_or_jumpable() then

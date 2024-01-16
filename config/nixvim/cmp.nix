@@ -3,6 +3,8 @@
     plugins.cmp-nvim-lsp.enable = true;
     plugins.cmp-nvim-lsp-signature-help.enable = true;
     plugins.cmp-nvim-lsp-document-symbol.enable = true;
+    plugins.cmp-path.enable = true;
+    plugins.cmp-buffer.enable = true;
     plugins.codeium-nvim = {
       enable = true;
     };

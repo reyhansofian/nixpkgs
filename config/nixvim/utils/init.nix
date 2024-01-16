@@ -86,6 +86,7 @@
       writebackup = false; # disable making a backup before overwriting a file
     };
 
+    clipboard.register = "unnamedplus";
     clipboard.providers.wl-copy.enable = true;
   };
 }

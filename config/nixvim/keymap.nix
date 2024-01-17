@@ -27,6 +27,7 @@
         "<leader>Q" = [ "<cmd>confirm qall<cr>" "Quit all" ];
         "|" = [ "<cmd>vsplit<cr>" "Vertical Split" ];
         "\\" = [ "<cmd>split<cr>" "Horizontal Split" ];
+        "<leader>h" = [ "<cmd>nohl<cr>" "Clear highlight" ];
 
         # Find using Telescope
         "<leader>f" = [ "" " Find" ];

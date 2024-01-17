@@ -15,6 +15,7 @@
 
     plugins.nvim-ufo = {
       enable = true;
+
       preview.mappings = {
         scrollB = "<C-b>";
         scrollF = "<C-f>";

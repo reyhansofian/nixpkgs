@@ -9,7 +9,14 @@
       enable = true;
     };
 
-    plugins.luasnip.enable = true;
+    plugins.luasnip = {
+      enable = true;
+      extraConfig = {
+        enable_autosnippets = true;
+        store_selection_keys = "<Tab>";
+      };
+    };
+
     plugins.cmp_luasnip.enable = true;
 
     plugins.nvim-cmp = {
@@ -64,7 +71,7 @@
         "<S-Tab>" = {
           action = ''
             function(fallback)
-	      local snip_status_ok, luasnip = pcall(require, "luasnip")
+              local snip_status_ok, luasnip = pcall(require, "luasnip")
               if cmp.visible() then
                 cmp.select_prev_item()
               elseif luasnip.jumpable(-1) then

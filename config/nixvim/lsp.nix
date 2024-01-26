@@ -9,12 +9,21 @@
         gd = "definition";
         gi = "implementation";
         gt = "type_definition";
+        gh = "signature_help";
       };
 
       capabilities = ''
         capabilities.textDocument.foldingRange = {
             dynamicRegistration = false,
             lineFoldingOnly = true
+        }
+        capabilities.textDocument.completion.completionItem.snippetSupport = true
+        capabilities.textDocument.completion.completionItem.resolveSupport = {
+          properties = {
+            "documentation",
+            "detail",
+            "additionalTextEdits",
+          },
         }
         local language_servers = require("lspconfig").util.available_servers() -- or list servers manually like {'gopls', 'clangd'}
         for _, ls in ipairs(language_servers) do

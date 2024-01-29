@@ -3,8 +3,12 @@
     plugins.cmp-nvim-lsp.enable = true;
     plugins.cmp-nvim-lsp-signature-help.enable = true;
     plugins.cmp-nvim-lsp-document-symbol.enable = true;
+    plugins.cmp-treesitter.enable = true;
     plugins.cmp-path.enable = true;
     plugins.cmp-buffer.enable = true;
+    plugins.cmp-cmdline.enable = true;
+    plugins.cmp-spell.enable = true;
+    plugins.cmp-dictionary.enable = true;
     plugins.codeium-nvim = {
       enable = true;
     };
@@ -24,11 +28,18 @@
       preselect = "None";
 
       sources = [
-        { name = "codeium"; priority = 1000; }
-        { name = "nvim_lsp"; priority = 750; }
-        { name = "luasnip"; priority = 500; }
-        { name = "buffer"; priority = 250; }
-        { name = "path"; priority = 100; }
+        { name = "nvim_lsp"; }
+        { name = "nvim_lsp_signature_help"; }
+        { name = "nvim_lsp_document_symbol"; }
+        { name = "codeium"; }
+        { name = "luasnip"; } #For luasnip users.
+        { name = "path"; }
+        { name = "buffer"; }
+        { name = "cmdline"; }
+        { name = "spell"; }
+        { name = "dictionary"; }
+        { name = "tmux"; }
+        { name = "treesitter"; }
       ];
 
       window = {

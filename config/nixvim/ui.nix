@@ -12,6 +12,16 @@
     };
 
     plugins.indent-blankline.enable = true;
+    plugins.indent-blankline.indent.char = "┊";
+    plugins.indent-blankline.exclude.buftypes = [ "terminal" "neorg" ];
+    plugins.indent-blankline.exclude.filetypes = [
+      "help"
+      "terminal"
+      "dashboard"
+      "lspinfo"
+      "TelescopePrompt"
+      "TelescopeResults"
+    ];
 
     plugins.nvim-ufo = {
       enable = true;

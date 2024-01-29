@@ -1,8 +1,19 @@
+{ pkgs, ... }:
 {
   programs.nixvim = {
     enable = true;
     globals.mapleader = " ";
     globals.maplocalleader = ",";
+
+    extraPlugins = with pkgs.vimPlugins; [ edge unicode-vim lsp-inlayhints-nvim ];
+    extraConfigLua = ''
+      vim.opt.list = true
+      vim.opt.listchars:append("eol:↴")
+
+      require('lsp-inlayhints').setup({
+        renderer = "inlay-hints/render/virtline",
+      })
+    '';
 
     extraConfigLuaPre = ''
       vim.g.mapleader = " "
@@ -12,6 +23,15 @@
 
       current_buf, last_buf = nil, nil
       url_matcher = "\\v\\c%(%(h?ttps?|ftp|file|ssh|git)://|[a-z]+[@][a-z]+[.][a-z]+:)%([&:#*@~%_\\-=?!+;/0-9a-z]+%(%([.;/?]|[.][.]+)[&:#*@~%_\\-=?!+/0-9a-z]+|:\\d+|,%(%(%(h?ttps?|ftp|file|ssh|git)://|[a-z]+[@][a-z]+[.][a-z]+:)@![0-9a-z]+))*|\\([&:#*@~%_\\-=?!+;/.0-9a-z]*\\)|\\[[&:#*@~%_\\-=?!+;/.0-9a-z]*\\]|\\{%([&:#*@~%_\\-=?!+;/.0-9a-z]*|\\{[&:#*@~%_\\-=?!+;/.0-9a-z]*})\\})+"
+
+      vim.cmd [[ 
+        if has('termguicolors') 
+          set termguicolors 
+        endif 
+      ]]
+      vim.g.edge_style = 'neon'
+      -- TODO: fix directory creation in Nix befor enable edge_better_performance
+      -- let g:edge_better_performance = 1
 
       --- Run a shell command and capture the output and if the command succeeded or failed
       ---@param cmd string|string[] The terminal command to execute

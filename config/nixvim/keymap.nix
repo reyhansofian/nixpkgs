@@ -64,6 +64,21 @@
         #  "Move buffer tab left"
         #];
 
+        # Lsp-saga
+        "[e" = [ "<cmd>Lspsaga diagnostic_jump_next<cr>" "Next Diagnostic" ];
+        "]e" = [ "<cmd>Lspsaga diagnostic_jump_prev<cr>" "Previous Diagnostic" ];
+        "K" = [ "<cmd>Lspsaga hover_doc<cr>" "Code Hover" ];
+        "F" = [ "<cmd>lua vim.lsp.buf.format({ async = true }) <cr>" "Format the current buffer" ];
+        "gi" = [ "<cmd>Lspsaga incoming_calls<cr>" "Incoming Calls" ];
+        "go" = [ "<cmd>Lspsaga outgoing_calls<cr>" "Outgoing Calls" ];
+        "gD" = [ "<cmd>Lspsaga goto_definition<cr>" "Go to Definition" ];
+        "gd" = [ "<cmd>Lspsaga peek_definition<cr>" "Peek Definition" ];
+        "gr" = [ "<cmd>Lspsaga rename<cr>" "Code Rename" ];
+        "gs" = [ ''<cmd>lua require("wtf").search() <cr>'' "Search diagnostic with Google" ];
+        # "<leader>p" = [ "<cmd>Lspsaga finder<cr>" "Code Finder" ];
+        "<leader>a" = [ "<cmd>Lspsaga code_action<cr>" "Code Action" ];
+        "<c-a>" = [ "<cmd>Lspsaga code_action<cr>" "Code Action" ];
+
         # Telescope
       };
     };

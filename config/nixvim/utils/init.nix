@@ -7,7 +7,7 @@
     keymaps = [
       {
         mode = [ "n" "t" ];
-        key = "<F7>";
+        key = "<c-space>";
         action = "<cmd>Lspsaga term_toggle<CR>";
         options = {
           desc = "Open terminal";

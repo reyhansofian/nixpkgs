@@ -4,6 +4,16 @@
     enable = true;
     globals.mapleader = " ";
     globals.maplocalleader = ",";
+    keymaps = [
+      {
+        mode = [ "n" "t" ];
+        key = "<F7>";
+        action = "<cmd>Lspsaga term_toggle<CR>";
+        options = {
+          desc = "Open terminal";
+        };
+      }
+    ];
 
     extraPlugins = with pkgs.vimPlugins; [ edge unicode-vim lsp-inlayhints-nvim ];
     extraConfigLua = ''
@@ -20,6 +30,7 @@
       vim.g.max_file = { size = 1024 * 100, lines = 10000 }
       vim.g.git_worktress = nil
       vim.t.bufs = vim.t.bufs and vim.t.bufs or vim.api.nvim_list_bufs()
+      -- vim.keymap.set({'n','t', '<A-d>', '<cmd>Lspsaga term_toggle'})
 
       current_buf, last_buf = nil, nil
       url_matcher = "\\v\\c%(%(h?ttps?|ftp|file|ssh|git)://|[a-z]+[@][a-z]+[.][a-z]+:)%([&:#*@~%_\\-=?!+;/0-9a-z]+%(%([.;/?]|[.][.]+)[&:#*@~%_\\-=?!+/0-9a-z]+|:\\d+|,%(%(%(h?ttps?|ftp|file|ssh|git)://|[a-z]+[@][a-z]+[.][a-z]+:)@![0-9a-z]+))*|\\([&:#*@~%_\\-=?!+;/.0-9a-z]*\\)|\\[[&:#*@~%_\\-=?!+;/.0-9a-z]*\\]|\\{%([&:#*@~%_\\-=?!+;/.0-9a-z]*|\\{[&:#*@~%_\\-=?!+;/.0-9a-z]*})\\})+"

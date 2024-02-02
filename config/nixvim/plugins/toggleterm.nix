@@ -1,7 +1,7 @@
 {
   programs.nixvim = {
     plugins.toggleterm = {
-      enable = true;
+      enable = false;
 
       openMapping = "<F7>";
       direction = "float";

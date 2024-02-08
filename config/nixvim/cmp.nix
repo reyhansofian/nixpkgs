@@ -33,12 +33,13 @@
         { name = "nvim_lsp_document_symbol"; }
         { name = "codeium"; }
         { name = "luasnip"; } #For luasnip users.
+        { name = "luasnip-choice"; } #For luasnip users.
         { name = "path"; }
         { name = "buffer"; }
-        { name = "cmdline"; }
-        { name = "spell"; }
-        { name = "dictionary"; }
-        { name = "tmux"; }
+        # { name = "cmdline"; }
+        # { name = "spell"; }
+        # { name = "dictionary"; }
+        # { name = "tmux"; }
         { name = "treesitter"; }
       ];
 

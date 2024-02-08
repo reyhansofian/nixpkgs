@@ -47,9 +47,6 @@ in
       nodePackages.yaml-language-server
       nodePackages.vscode-langservers-extracted
 
-      # Nvim Plugins
-      luaformatter
-
       # Fonts
       (nerdfonts.override {
         fonts = [ "FiraCode" "DroidSansMono" "Hack" ];
@@ -63,6 +60,10 @@ in
       gcc
       xclip
       unzip
+
+      # Nvim Plugins
+      # it doesn't work on OSX. so we only use it on WSL
+      luaformatter
     ];
   };
 

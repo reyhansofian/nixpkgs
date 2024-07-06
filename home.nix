@@ -47,6 +47,12 @@ in
       nodePackages.yaml-language-server
       nodePackages.vscode-langservers-extracted
 
+      # Kubernetes
+      kubectl
+      k9s
+      kubectx
+      (google-cloud-sdk.withExtraComponents [ google-cloud-sdk.components.gke-gcloud-auth-plugin ])
+
       # Fonts
       (nerdfonts.override {
         fonts = [ "FiraCode" "DroidSansMono" "Hack" ];

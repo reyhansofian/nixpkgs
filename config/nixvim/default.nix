@@ -8,10 +8,11 @@
     ./utils/autocmd.nix
     ./plugins/comment.nix
     ./plugins/telescope.nix
-    ./plugins/toggleterm.nix
+    # ./plugins/toggleterm.nix
     ./plugins/treesitter.nix
     ./plugins/neo-tree.nix
     ./plugins/git.nix
+    ./plugins/avante.nix
     ./lsp.nix
     ./keymap.nix
     ./ui.nix

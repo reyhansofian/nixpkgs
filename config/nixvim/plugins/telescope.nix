@@ -4,10 +4,10 @@
       enable = true;
       extensions = {
         fzf-native.enable = true;
-        file_browser.enable = true;
+        file-browser.enable = true;
       };
 
-      defaults = {
+      settings.defaults = {
         git_worktrees = "vim.g.git_worktrees";
         path_display = [ "truncate" ];
         sorting_strategy = "ascending";

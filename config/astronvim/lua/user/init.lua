@@ -59,7 +59,7 @@ return {
         "jsonnet_ls",
         "python-lsp-server",
         "dockerfile-language-server-nodejs",
-        "rnix",
+        -- "rnix",
         "rust_analyzer",
         "terraformls",
         "tsserver",
@@ -127,17 +127,17 @@ return {
             };
           }
         end,
-        rnix = function()
-          return {
-            cmd = {
-              "nix-shell",
-              "-p",
-              "rnix-lsp",
-              "--run",
-              "'rnix-lsp'"
-            }
-          }
-        end,
+        -- rnix = function()
+        --   return {
+        --     cmd = {
+        --       "nix-shell",
+        --       "-p",
+        --       "rnix-lsp",
+        --       "--run",
+        --       "'rnix-lsp'"
+        --     }
+        --   }
+        -- end,
       },
 
       formatting = {

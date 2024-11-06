@@ -86,7 +86,7 @@
       end
     '';
 
-    options = {
+    opts = {
       number = true;
       #  relativenumber = true;
       shiftwidth = 2;
@@ -138,7 +138,7 @@
       writebackup = false; # disable making a backup before overwriting a file
     };
 
-    clipboard.register = "unnamedplus";
-    clipboard.providers.wl-copy.enable = true;
+    # clipboard.register = "unnamedplus";
+    # clipboard.providers.wl-copy.enable = true;
   };
 }

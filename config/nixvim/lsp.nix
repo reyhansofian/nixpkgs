@@ -76,10 +76,10 @@
       '';
 
       servers = {
-        rnix-lsp = {
-          enable = true;
-          autostart = true;
-        };
+        # rnix = {
+        #   enable = true;
+        #   autostart = true;
+        # };
 
         gopls = {
           enable = true;
@@ -108,7 +108,7 @@
           enable = true;
         };
 
-        tsserver = {
+        ts_ls = {
           enable = true;
         };
 
@@ -134,7 +134,7 @@
 
     plugins.lsp-format = {
       enable = true;
-      setup = {
+      settings = {
         gopls = {
           exclude = [
             "gopls"

@@ -6,33 +6,38 @@
 
     plugins.lualine = {
       enable = true;
-      extensions = [ "fzf" ];
-      globalstatus = true;
-      theme = "onedark";
+      settings.extensions = [ "fzf" ];
+      settings.options.globalstatus = true;
+      settings.options.theme = "onedark";
     };
 
-    plugins.indent-blankline.enable = true;
-    plugins.indent-blankline.indent.char = "┊";
-    plugins.indent-blankline.exclude.buftypes = [ "terminal" "neorg" ];
-    plugins.indent-blankline.exclude.filetypes = [
-      "help"
-      "terminal"
-      "dashboard"
-      "lspinfo"
-      "TelescopePrompt"
-      "TelescopeResults"
-    ];
+    plugins.web-devicons.enable = true;
+    plugins.mini.enable = true;
+    plugins.indent-blankline = {
+      enable = true;
+      settings.indent.char = "┊";
+      settings.exclude.buftypes = [ "terminal" "neorg" ];
+      settings.exclude.filetypes = [
+        "help"
+        "terminal"
+        "dashboard"
+        "lspinfo"
+        "TelescopePrompt"
+        "TelescopeResults"
+      ];
+    };
 
     plugins.nvim-ufo = {
       enable = true;
 
-      preview.mappings = {
+      settings.preview.mappings = {
         scrollB = "<C-b>";
         scrollF = "<C-f>";
         scrollU = "<C-u>";
         scrollD = "<C-d>";
       };
-      providerSelector = ''
+
+      settings.providerSelector.__raw = ''
         function(_, filetype, buftype)
           local function handleFallbackException(bufnr, err, providerName)
             if type(err) == "string" and err:match "UfoFallbackException" then

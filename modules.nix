@@ -3,6 +3,7 @@
 let
   overlay-unstable = final: prev: {
     unstable = inputs.nixpkgs.legacyPackages.${system};
+    # nix = inputs.nixpkgs-stable.legacyPackages.${system}.nix;
   };
 in
 {
@@ -14,22 +15,10 @@ in
     '';
   };
 
+  nix.package = inputs.nixpkgs-stable.legacyPackages.${system}.nix;
   nixpkgs.overlays = [ overlay-unstable ];
   nixpkgs.config = {
     allowUnfree = true;
     allowBroken = true;
   };
-
-  # xdg.configFile = {
-  # astronvim = {
-  #   # onChange = "nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'";
-  #   onChange = "nvim --headless -c 'if exists(\":LuaCacheClear\") | :LuaCacheClear' +quitall";
-  #   source = ./config/astronvim;
-  # };
-  # nvim = {
-  #   # onChange = "nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'";
-  #   # onChange = "nvim --headless -c 'if exists(\":LuaCacheClear\") | :LuaCacheClear' +quitall";
-  #   source = sources.AstroNvim;
-  # };
-  # };
 }

@@ -1,6 +1,6 @@
 {
   programs.nixvim = {
-    plugins.comment-nvim = {
+    plugins.comment = {
       enable = true;
     };
 

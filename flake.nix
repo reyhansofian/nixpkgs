@@ -2,6 +2,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/release-24.05";
 
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs-unstable";
@@ -9,6 +10,7 @@
     nixvim = {
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
+      inputs.home-manager.follows = "home-manager";
     };
 
     utils.url = "github:numtide/flake-utils";
@@ -31,7 +33,6 @@
             inherit pkgs;
 
             modules = [
-              # (import ./modules.nix { inherit inputs system home-manager sources; })
               (import ./modules.nix { inherit inputs system home-manager; })
               ./home.nix
               ({ ... }: { home.username = "vicz"; home.homeDirectory = getHomeDir "vicz"; })
@@ -44,7 +45,6 @@
             inherit pkgs;
 
             modules = [
-              # (import ./modules.nix { inherit inputs system home-manager sources; })
               (import ./modules.nix { inherit inputs system home-manager; })
               ./home.nix
               ({ ... }: { home.username = "reyhan"; home.homeDirectory = getHomeDir "reyhan"; })

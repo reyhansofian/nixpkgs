@@ -51,6 +51,7 @@ in
       kubectl
       k9s
       kubectx
+      helm
       (google-cloud-sdk.withExtraComponents [ google-cloud-sdk.components.gke-gcloud-auth-plugin ])
 
       # Fonts
@@ -112,6 +113,15 @@ in
         };
         "bitbucket.org-efish" = {
           hostname = "bitbucket.org";
+          identityFile = "~/.ssh/efish_ed";
+          identitiesOnly = true;
+          user = "git";
+          extraOptions = {
+            AddKeysToAgent = "yes";
+          };
+        };
+        "git.lauk.io" = {
+          hostname = "git.lauk.io";
           identityFile = "~/.ssh/efish_ed";
           identitiesOnly = true;
           user = "git";

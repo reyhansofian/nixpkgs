@@ -72,24 +72,35 @@
         '';
         mode = [ "i" "s" ];
       }
-      {
-        key = "<Tab>";
-        action.__raw = ''
-          function(fallback)
-            local snip_status_ok, luasnip = pcall(require, "luasnip")
-            if cmp.visible() then
-              cmp.select_next_item()
-            elseif luasnip.expand_or_jumpable() then
-              luasnip.expand_or_jump()
-            elseif has_words_before() then
-              cmp.complete()
-              else
-                fallback()
-              end
-            end
-          '';
-        mode = [ "i" "s" ];
-      }
+      # {
+      #   key = "<Tab>";
+      #   action.__raw = ''
+      #     function(fallback)
+      #       local cmp = require('cmp')
+      #       local luasnip = require('luasnip')
+      #       
+      #       -- Define has_words_before function if not already defined
+      #       local function has_words_before()
+      #         unpack = unpack or table.unpack
+      #         local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+      #         return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+      #       end
+      #
+      #       if cmp.visible() then
+      #         cmp.select_next_item()
+      #       elseif luasnip.expandable() then
+      #         luasnip.expand()
+      #       elseif luasnip.jumpable(1) then
+      #         luasnip.jump(1)
+      #       elseif has_words_before() then
+      #         cmp.complete()
+      #       else
+      #         fallback()
+      #       end
+      #     end
+      #   '';
+      #   mode = [ "i" "s" ];
+      # }
     ];
 
     plugins.cmp-nvim-lsp.enable = true;
@@ -119,9 +130,6 @@
       enable = true;
 
       luaConfig = {
-        pre = "
-
-        ";
       };
 
       settings = {
@@ -141,6 +149,34 @@
           # { name = "tmux"; }
           { name = "treesitter"; }
         ];
+
+        mapping = {
+          "<Tab>" = ''
+            function(fallback)
+              local cmp = require('cmp')
+              local luasnip = require('luasnip')
+              
+              -- Define has_words_before function if not already defined
+              local function has_words_before()
+                unpack = unpack or table.unpack
+                local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+                return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+              end
+
+              if cmp.visible() then
+                cmp.select_next_item()
+              elseif luasnip.expandable() then
+                luasnip.expand()
+              elseif luasnip.jumpable(1) then
+                luasnip.jump(1)
+              elseif has_words_before() then
+                cmp.complete()
+              else
+                fallback()
+              end
+            end
+          '';
+        };
 
         window = {
           completion = {

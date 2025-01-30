@@ -20,7 +20,6 @@ in
       tldr
       procs
       gtop
-      # gcc
       unstable.btop
       tree
       ripgrep
@@ -34,12 +33,16 @@ in
       openssh
       zsh
       gnumake42
-      # neovim
+      sops
+      pinentry-tty
+      bind
+      dnsutils
 
       # Git
       gitAndTools.gh
       git-crypt
       git-lfs
+      git
 
       # Nodejs
       nodePackages.dockerfile-language-server-nodejs
@@ -51,7 +54,7 @@ in
       kubectl
       k9s
       kubectx
-      helm
+      kubernetes-helm
       (google-cloud-sdk.withExtraComponents [ google-cloud-sdk.components.gke-gcloud-auth-plugin ])
 
       # Fonts
@@ -74,9 +77,22 @@ in
     ];
   };
 
+  services = {
+    gpg-agent = {
+      enable = true;
+      pinentryPackage = pkgs.pinentry-tty;
+    };
+  };
+
   programs = {
     home-manager.enable = true;
-    gpg.enable = true;
+    gpg = {
+      enable = true;
+      settings = {
+        use-agent = true;
+      };
+    };
+
     fzf.enable = true;
     jq.enable = true;
     bat.enable = true;
@@ -125,6 +141,15 @@ in
           identityFile = "~/.ssh/efish_ed";
           identitiesOnly = true;
           user = "git";
+          extraOptions = {
+            AddKeysToAgent = "yes";
+          };
+        };
+        "ubuntu.local" = {
+          hostname = "vm.local";
+          identityFile = "~/.ssh/user-ubuntu-vm";
+          identitiesOnly = true;
+          user = "user";
           extraOptions = {
             AddKeysToAgent = "yes";
           };
